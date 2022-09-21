@@ -32,6 +32,22 @@ Confusion Matrix
 ___
 ![Web application of the model](plots/cf.png)
 ___
+## Features
+
+|Variable	|Data Object	|Data type|
+| ----| ---|----|
+|MR Delay	|The number of days between visits by a patient.	|Integer
+|Gender|	Gender of a patient (M or F)	|Object
+|Hand	|Patient’s dominant hand 	|Object
+|Age	|Patient's age at the time of data collection	|Integer
+|EDUC	|Years of Education	|Integer
+|SES 	|Socioeconomic status is classified into categories from 1 (highest status) to 5 (lowest status)	|Integer
+|MMSE	|Mini-mental State Examination score (range is from 0-worst to 30-best)	|Integer
+|eTIV	|Estimated total intracranial volume (cm3)	|Integer
+|nWBV	|Normalized whole brain volume 	|Float
+
+
+___
 ## Model Deployment
 The final model with the best score was deployed on a web application built with **Django** with the frontend built with **HTML & CSS** with **Boostrap 4** as the CSS Framework.
 

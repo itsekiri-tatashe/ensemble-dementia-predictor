@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dementia Predictor</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+ <div class="container">
+    <div class="row py-5 mt-4 align-items-center">
+        <!-- For Demo Purpose -->
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+            <img src="https://media.istockphoto.com/vectors/alzheimer-patients-concept-vector-id1270618095?k=20&m=1270618095&s=612x612&w=0&h=If77kHhr6NFm7R0Y7TyL8t8QV22-0iTvIdcv5uhGrvE=" alt="" class="img-fluid mb-3">
+            <h1>Dementia Predictor</h1>
+            <h5>By Eyimofe A. Pinnick</h5> 
+            <p><a href="https://github.com/EyimofeP/" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" class="img-fluid" style="height: 30px; width: 30px;">
+            </a></p>
+
+            {% if prediction == 1 or prediction == 0 %}
+                <br><br>
+                Outcome:
+                {% if prediction == 1 %}
+                    <h4 class="font-bold text-black mb-0" style="font-weight: bolder; color: red;">
+                        The patient is at risk of having dementia
+                    </h4>
+                {% elif prediction == 0 %}
+                    <h4 class="font-bold text-black mb-0" style="font-weight: bolder; color: green;">
+                        The patient does not have dementia
+                    </h4>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <!-- Registeration Form -->
+        <div class="col-md-7 col-lg-6 ml-auto">
+
+            <form action="{% url 'predict' %}" method="POST"> 
+                {% csrf_token %}
+                <div class="row">
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        <select class="form-control form-select bg-white border-left-0 border-md"  id="M/F" name="M/F" placeholder="Gender" required>
+                            <option selected disabled>What gender is the patient?</option>
+                            <option value="0">Female</option>
+                            <option value="1">Male</option>
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-credit-card text-muted"></i>
+                            </span>
+                        </div>
+                        <select class="form-control form-select bg-white border-left-0 border-md"  id="SES" name="SES" placeholder="Socio-economic Status" required>
+                            <option selected disabled>What is Socio-economic status of the patient?</option>
+                            <option value="1">Level 1 - Highest</option>
+                            <option value="2">Level 2</option>
+                            <option value="3">Level 3</option>
+                            <option value="4">Level 4</option>
+                            <option value="5">Level 5 - Lowest</option>
+                          </select>
+                    </div>
+                    
+                    <!-- First Name -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-clock-o text-muted"></i>
+                            </span>
+                        </div>
+                        <input id="MR Delay" type="number" name="MR Delay" placeholder="MR Delay" class="form-control bg-white border-left-0 border-md" required>
+                    </div>
+
+                    <!-- First Name -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-calendar text-muted"></i>
+                            </span>
+                        </div>
+                        <input id="Age" type="number" name="Age" placeholder="Age of Patient" class="form-control bg-white border-left-0 border-md" required>
+                    </div>
+
+                    <!-- First Name -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-graduation-cap text-muted"></i>
+                            </span>
+                        </div>
+                        <input id="EDUC" type="number" name="EDUC" placeholder="How many years of education does the patient have?" class="form-control bg-white border-left-0 border-md" required>
+                    </div>
+                    
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-globe text-muted"></i>
+                            </span>
+                        </div>
+                        <input id="MMSE" type="number" name="MMSE" placeholder="What is the Mini-Mental State Examination Score of the patient?" class="form-control bg-white border-left-0 border-md" required>
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-clock-o text-muted"></i>
+                            </span>
+                        </div>
+                        <input id="eTIV" type="number" name="eTIV" placeholder="Input the estimated total intracranial volume (cm3)?" class="form-control bg-white border-left-0 border-md" required>
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-clock-o text-muted"></i>
+                            </span>
+                        </div>
+                        <input id="nWBV" type="text" name="nWBV" placeholder="Input the Normalized whole brain volume?" class="form-control bg-white border-left-0 border-md" required>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group col-lg-12 mx-auto mb-0">
+                        <button class="btn btn-primary btn-block py-2">
+                            <span class="font-weight-bold">Predict</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'app.js' %}"></script>
+</body>
+</html>

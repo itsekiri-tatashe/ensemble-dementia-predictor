@@ -29,6 +29,7 @@ Confusion Matrix
 |---|----|----|
 | 0 | TN | FP |
 | 1 | FN | TP |
+___
 ![Web application of the model](plots/cf.png)
 ___
 ## Model Deployment

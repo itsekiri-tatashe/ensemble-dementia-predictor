@@ -13,7 +13,7 @@ An application that allows users to predict the risk of a patient having dementi
 
 * Boosting had an accuracy of 86.76%, f1-score of 83.64% and recall of 85.19%
 
-* Model was deployed on a web application built using **Django** available at [Dementia Predictor](https://dementia-predictor.herokuapp.com/)
+* Model was deployed on a web application built using **Django** available at [Dementia Predictor](https://dementia-predictor.onrender.com/)
 ___
 ## Model Performamce
 Accuracy, F1-Score and Recall were the metrics used to evaluate the performance of the model
